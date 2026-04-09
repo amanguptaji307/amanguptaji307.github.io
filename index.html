@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aman Gupta — Cybersecurity & AI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg:        #080d18;
+  --bg2:       #0d1525;
+  --bg3:       #111d32;
+  --cyan:      #00d4aa;
+  --cyan-dim:  rgba(0,212,170,.12);
+  --cyan-glow: rgba(0,212,170,.25);
+  --text:      #e8edf5;
+  --muted:     #6b7a99;
+  --border:    rgba(255,255,255,.07);
+  --border-c:  rgba(0,212,170,.3);
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Syne',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* GRID BG */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,170,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,170,.03) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 6vw;
+  background:rgba(8,13,24,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-logo{
+  font-family:'Space Mono',monospace;
+  font-size:.85rem;
+  color:var(--cyan);
+  text-decoration:none;
+  letter-spacing:.04em;
+}
+
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  text-decoration:none;
+  font-size:.75rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:500;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--cyan);}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:10rem 6vw 6rem;
+  position:relative;
+  z-index:1;
+}
+
+.hero-inner{max-width:860px;}
+
+.hero-prefix{
+  font-family:'Space Mono',monospace;
+  font-size:.78rem;
+  color:var(--cyan);
+  letter-spacing:.18em;
+  margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+
+.hero-prefix::before{
+  content:'';display:inline-block;
+  width:2.2rem;height:1px;background:var(--cyan);
+}
+
+.hero-name{
+  font-size:clamp(3.2rem,9vw,7.5rem);
+  font-weight:800;
+  line-height:.95;
+  letter-spacing:-.03em;
+  color:var(--text);
+  margin-bottom:.3rem;
+}
+
+.hero-name .accent{
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--cyan);
+}
+
+.hero-title{
+  font-family:'Space Mono',monospace;
+  font-size:clamp(.85rem,1.8vw,1.05rem);
+  color:var(--muted);
+  margin:1.6rem 0 2.2rem;
+  letter-spacing:.05em;
+}
+
+.hero-title span{color:var(--cyan);}
+
+.hero-desc{
+  font-size:1.05rem;
+  color:#a0adc4;
+  max-width:52ch;
+  line-height:1.85;
+  font-weight:400;
+  margin-bottom:2.8rem;
+}
+
+.hero-btns{display:flex;gap:1.2rem;flex-wrap:wrap;}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  text-decoration:none;
+  font-size:.75rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:.85rem 1.8rem;
+  font-weight:600;
+  transition:all .25s;
+  cursor:pointer;
+  border:none;
+  font-family:'Syne',sans-serif;
+}
+
+.btn-primary{
+  background:var(--cyan);
+  color:var(--bg);
+}
+.btn-primary:hover{background:#00f0c2;transform:translateY(-2px);}
+
+.btn-outline{
+  background:transparent;
+  color:var(--cyan);
+  border:1px solid var(--border-c);
+}
+.btn-outline:hover{background:var(--cyan-dim);transform:translateY(-2px);}
+
+.hero-stats{
+  display:flex;gap:3rem;margin-top:3.5rem;
+  padding-top:3rem;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap;
+}
+
+.hero-stat-num{
+  font-family:'Space Mono',monospace;
+  font-size:1.9rem;
+  font-weight:700;
+  color:var(--cyan);
+  line-height:1;
+}
+
+.hero-stat-label{
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-top:.4rem;
+}
+
+/* FLOATING BADGE */
+.hero-badge{
+  position:absolute;right:6vw;top:50%;transform:translateY(-50%);
+  width:180px;height:180px;
+  border:1px solid var(--border-c);
+  border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  background:var(--cyan-dim);
+  animation:spin-slow 20s linear infinite;
+}
+
+@keyframes spin-slow{
+  to{transform:translateY(-50%) rotate(360deg);}
+}
+
+.hero-badge-inner{
+  animation:spin-slow-reverse 20s linear infinite;
+}
+@keyframes spin-slow-reverse{
+  to{transform:rotate(-360deg);}
+}
+
+.hero-badge-year{
+  font-family:'Space Mono',monospace;
+  font-size:1.6rem;
+  font-weight:700;
+  color:var(--cyan);
+  line-height:1;
+}
+
+.hero-badge-label{
+  font-size:.62rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-top:.3rem;
+}
+
+/* SECTIONS */
+section{
+  padding:7rem 6vw;
+  position:relative;
+  z-index:1;
+}
+
+.sec-label{
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  margin-bottom:.8rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.sec-label::before{
+  content:'';display:inline-block;
+  width:1.5rem;height:1px;background:var(--cyan);
+}
+
+.sec-title{
+  font-size:clamp(1.9rem,4vw,2.8rem);
+  font-weight:700;
+  color:var(--text);
+  line-height:1.15;
+  margin-bottom:1rem;
+  letter-spacing:-.02em;
+}
+
+.sec-divider{
+  width:3rem;height:2px;background:var(--cyan);margin:1.6rem 0 2.5rem;
+}
+
+/* ABOUT */
+#about{background:var(--bg2);}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5vw;
+  align-items:start;
+  margin-top:1rem;
+}
+
+.about-text p{
+  font-size:.95rem;
+  color:#a0adc4;
+  line-height:1.9;
+  margin-bottom:1rem;
+}
+
+.about-info-list{
+  list-style:none;
+  margin-top:2rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.8rem 1.5rem;
+}
+
+.about-info-list li{
+  font-size:.82rem;
+  color:var(--muted);
+}
+
+.about-info-list li strong{
+  display:block;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  font-weight:600;
+  margin-bottom:.15rem;
+}
+
+.about-info-list a{
+  color:var(--text);
+  text-decoration:none;
+}
+.about-info-list a:hover{color:var(--cyan);}
+
+.edu-cards{display:flex;flex-direction:column;gap:1rem;}
+
+.edu-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-left:2px solid var(--cyan);
+  padding:1.4rem 1.6rem;
+  transition:border-color .2s;
+}
+.edu-card:hover{border-color:var(--cyan);}
+
+.edu-degree{
+  font-size:.95rem;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:.2rem;
+}
+
+.edu-school{
+  font-size:.82rem;
+  color:var(--muted);
+  margin-bottom:.5rem;
+}
+
+.edu-meta{
+  display:flex;gap:1rem;flex-wrap:wrap;
+}
+
+.edu-tag{
+  font-family:'Space Mono',monospace;
+  font-size:.68rem;
+  letter-spacing:.1em;
+  background:var(--cyan-dim);
+  color:var(--cyan);
+  padding:.25rem .7rem;
+  border:1px solid var(--border-c);
+}
+
+/* SKILLS */
+#skills{background:var(--bg);}
+
+.skills-cats{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1.5rem;
+  margin-top:2rem;
+}
+
+.skill-cat{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:1.8rem;
+  transition:border-color .3s, transform .3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.skill-cat::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:2px;
+  background:var(--cyan);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s;
+}
+
+.skill-cat:hover{border-color:var(--border-c);transform:translateY(-3px);}
+.skill-cat:hover::after{transform:scaleX(1);}
+
+.skill-cat-icon{
+  font-size:1.4rem;margin-bottom:1rem;
+  font-family:'Space Mono',monospace;
+  color:var(--cyan);
+}
+
+.skill-cat-name{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:1rem;
+  letter-spacing:-.01em;
+}
+
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+
+.tag{
+  font-family:'Space Mono',monospace;
+  font-size:.68rem;
+  letter-spacing:.06em;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  color:var(--muted);
+  padding:.3rem .7rem;
+  transition:all .2s;
+}
+.tag:hover,.tag.hi{background:var(--cyan-dim);border-color:var(--border-c);color:var(--cyan);}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2);}
+
+.exp-list{margin-top:2rem;display:flex;flex-direction:column;gap:1.5rem;}
+
+.exp-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:2rem 2.2rem;
+  position:relative;
+  transition:border-color .25s;
+}
+.exp-card:hover{border-color:var(--border-c);}
+
+.exp-card-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  flex-wrap:wrap;gap:.8rem;
+  margin-bottom:1rem;
+}
+
+.exp-role{
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--text);
+  letter-spacing:-.01em;
+}
+
+.exp-company{
+  font-size:.82rem;
+  color:var(--cyan);
+  margin-top:.2rem;
+  font-weight:500;
+}
+
+.exp-date{
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;
+  color:var(--muted);
+  letter-spacing:.1em;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:.3rem .8rem;
+  white-space:nowrap;
+}
+
+.exp-points{
+  list-style:none;
+  display:flex;flex-direction:column;gap:.5rem;
+}
+
+.exp-points li{
+  font-size:.88rem;
+  color:#8899b8;
+  padding-left:1.2rem;
+  position:relative;
+  line-height:1.7;
+}
+
+.exp-points li::before{
+  content:'▹';
+  position:absolute;left:0;
+  color:var(--cyan);font-size:.8rem;
+}
+
+/* CERTIFICATIONS */
+#certs{background:var(--bg);}
+
+.certs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1.2rem;
+  margin-top:2rem;
+}
+
+.cert-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:1.4rem 1.6rem;
+  display:flex;align-items:flex-start;gap:1rem;
+  transition:all .25s;
+}
+
+.cert-card:hover{
+  border-color:var(--border-c);
+  background:var(--bg3);
+  transform:translateX(4px);
+}
+
+.cert-icon{
+  width:36px;height:36px;
+  background:var(--cyan-dim);
+  border:1px solid var(--border-c);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;
+  color:var(--cyan);
+  font-weight:700;
+}
+
+.cert-name{
+  font-size:.88rem;
+  font-weight:600;
+  color:var(--text);
+  line-height:1.4;
+  margin-bottom:.25rem;
+}
+
+.cert-issuer{
+  font-size:.75rem;
+  color:var(--muted);
+}
+
+/* CONTACT */
+#contact{background:var(--bg2);}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:5vw;
+  margin-top:1rem;
+}
+
+.contact-cards{
+  display:flex;flex-direction:column;gap:1rem;margin-top:1rem;
+}
+
+.contact-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:1.2rem 1.4rem;
+  display:flex;align-items:center;gap:1.2rem;
+  text-decoration:none;
+  transition:all .25s;
+}
+.contact-card:hover{border-color:var(--border-c);background:rgba(0,212,170,.05);}
+
+.cc-icon{
+  width:38px;height:38px;
+  background:var(--cyan-dim);
+  border:1px solid var(--border-c);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Mono',monospace;
+  font-size:.75rem;
+  color:var(--cyan);
+  flex-shrink:0;
+}
+
+.cc-label{
+  font-size:.65rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.15rem;
+}
+
+.cc-value{
+  font-size:.88rem;
+  color:var(--text);
+  font-weight:500;
+}
+
+.contact-form{
+  display:flex;flex-direction:column;gap:1.2rem;
+}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+
+.fg{display:flex;flex-direction:column;gap:.4rem;}
+
+.fg label{
+  font-size:.68rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.fg input,.fg textarea{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:.85rem 1rem;
+  font-family:'Syne',sans-serif;
+  font-size:.88rem;
+  color:var(--text);
+  outline:none;
+  transition:border-color .2s;
+  width:100%;
+}
+
+.fg input:focus,.fg textarea:focus{border-color:var(--border-c);}
+.fg textarea{min-height:120px;resize:vertical;}
+
+/* FOOTER */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  padding:2rem 6vw;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  position:relative;z-index:1;
+}
+
+.footer-logo{
+  font-family:'Space Mono',monospace;
+  font-size:.8rem;
+  color:var(--cyan);
+}
+
+.footer-copy{
+  font-size:.75rem;
+  color:var(--muted);
+  font-family:'Space Mono',monospace;
+}
+
+.footer-links{display:flex;gap:1rem;}
+.footer-links a{
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  transition:color .2s;
+}
+.footer-links a:hover{color:var(--cyan);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.fade-in{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+.hero-inner > *{animation:fadeUp .9s ease both;}
+.hero-inner > *:nth-child(1){animation-delay:.1s;}
+.hero-inner > *:nth-child(2){animation-delay:.2s;}
+.hero-inner > *:nth-child(3){animation-delay:.3s;}
+.hero-inner > *:nth-child(4){animation-delay:.4s;}
+.hero-inner > *:nth-child(5){animation-delay:.5s;}
+.hero-inner > *:nth-child(6){animation-delay:.6s;}
+
+/* RESPONSIVE */
+@media(max-width:820px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-badge{display:none;}
+  .form-row{grid-template-columns:1fr;}
+  #experience .exp-card-top{flex-direction:column;}
+}
+@media(max-width:520px){
+  .nav-links{display:none;}
+  .hero-stats{gap:1.8rem;}
+  section{padding:5rem 5vw;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">aman_gupta.exe</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-prefix">Hello, I am</p>
+    <h1 class="hero-name">AMAN<br><span class="accent">GUPTA</span></h1>
+    <p class="hero-title">
+      <span>Cybersecurity</span> · AI/ML · <span>Ethical Hacking</span> · Data Science
+    </p>
+    <p class="hero-desc">
+      B.Tech IT student at MITS Gwalior specialising in AI & Robotics, with hands-on internship experience in cybersecurity, cloud AI, and LLM post-training. Passionate about securing systems and building intelligent solutions.
+    </p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn btn-primary">View Experience ↓</a>
+      <a href="https://www.linkedin.com/in/aman-gupta-993025205" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      <a href="/cdn-cgi/l/email-protection#4b2a262a252c3e3b3f2a2122787b7c0b2c262a222765282426" class="btn btn-outline">Hire Me →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">Internships</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Certifications</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">2027</div>
+        <div class="hero-stat-label">Graduating</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">2+</div>
+        <div class="hero-stat-label">Years in Tech</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-inner">
+      <div class="hero-badge-year">B.Tech</div>
+      <div class="hero-badge-label">IT · AI & Robotics</div>
+      <div class="hero-badge-label" style="margin-top:.3rem;">MITS Gwalior</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="sec-label fade-in">About Me</p>
+  <h2 class="sec-title fade-in">Who I am</h2>
+  <div class="sec-divider fade-in"></div>
+
+  <div class="about-grid">
+    <div>
+      <div class="about-text">
+        <p class="fade-in">
+          I'm an aspiring Cybersecurity and Data Science student at MITS Gwalior, pursuing B.Tech in Information Technology with a specialisation in Artificial Intelligence & Robotics. I have a deep interest in the intersection of security and intelligence.
+        </p>
+        <p class="fade-in">
+          My journey includes internships at Edunet Foundation (AI & Cloud), CDAC Noida (Cybersecurity), and Ethara AI (LLM Post-Training) — giving me real-world exposure to ethical hacking, machine learning pipelines, IBM Cloud deployments, and large language model training workflows.
+        </p>
+        <p class="fade-in">
+          I'm actively seeking internship opportunities where I can apply my skills in Python, security tools, and AI/ML to solve meaningful problems and grow alongside experienced professionals.
+        </p>
+      </div>
+      <ul class="about-info-list fade-in">
+        <li><strong>Email</strong><a href="/cdn-cgi/l/email-protection#12737f737c7567626673787b21222552757f737b7e3c717d7f"><span class="__cf_email__" data-cfemail="76171b171811030602171c1f45464136111b171f1a5815191b">[email&#160;protected]</span></a></li>
+        <li><strong>Phone</strong>+91 96302 07064</li>
+        <li><strong>Location</strong>Gwalior, M.P., India</li>
+        <li><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/aman-gupta-993025205" target="_blank">Aman Gupta ↗</a></li>
+        <li><strong>Status</strong>Open to Internships</li>
+        <li><strong>Degree</strong>B.Tech IT (2023–2027)</li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="sec-label fade-in" style="margin-bottom:1rem;">Education</p>
+      <div class="edu-cards">
+        <div class="edu-card fade-in">
+          <div class="edu-degree">B.Tech – Information Technology</div>
+          <div class="edu-school">Madhav Institute of Technology & Science (MITS), Gwalior</div>
+          <div class="edu-meta">
+            <span class="edu-tag">AI & Robotics</span>
+            <span class="edu-tag">2023 – 2027</span>
+          </div>
+        </div>
+        <div class="edu-card fade-in">
+          <div class="edu-degree">12th – MP Board</div>
+          <div class="edu-school">Govt. H.S School, Alampur</div>
+          <div class="edu-meta">
+            <span class="edu-tag">81.2%</span>
+            <span class="edu-tag">2021 – 2022</span>
+          </div>
+        </div>
+        <div class="edu-card fade-in">
+          <div class="edu-degree">10th – CBSE</div>
+          <div class="edu-school">Kiddy's Corner Public School, Gwalior</div>
+          <div class="edu-meta">
+            <span class="edu-tag">77.4%</span>
+            <span class="edu-tag">2019 – 2020</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="sec-label fade-in">Technical Skills</p>
+  <h2 class="sec-title fade-in">What I work with</h2>
+  <div class="sec-divider fade-in"></div>
+
+  <div class="skills-cats">
+    <div class="skill-cat fade-in">
+      <div class="skill-cat-icon">&lt;/&gt;</div>
+      <div class="skill-cat-name">Programming Languages</div>
+      <div class="skill-tags">
+        <span class="tag hi">Python</span>
+        <span class="tag">C++</span>
+        <span class="tag">C</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span> 
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-in">
+      <div class="skill-cat-icon">🛡</div>
+      <div class="skill-cat-name">Cybersecurity</div>
+      <div class="skill-tags">
+        <span class="tag hi">Ethical Hacking</span>
+        <span class="tag">Vulnerability Assessment</span>
+        <span class="tag">Threat Intelligence</span>
+        <span class="tag">Penetration Testing</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-in">
+      <div class="skill-cat-icon">🤖</div>
+      <div class="skill-cat-name">AI / Machine Learning</div>
+      <div class="skill-tags">
+        <span class="tag hi">Machine Learning Algorithms</span>
+        <span class="tag">Python ML Libraries</span>
+        <span class="tag">Deep Learning Algorithms</span>
+        <span class="tag">AI Model Deployment</span>
+        <span class="tag">LLMs</span>
+        <span class="tag">RLHF</span>
+        <span class="tag">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-in">
+      <div class="skill-cat-icon">🗄</div>
+      <div class="skill-cat-name">Databases</div>
+      <div class="skill-tags">
+        <span class="tag hi">MySQL</span>
+        <span class="tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-in">
+      <div class="skill-cat-icon">☁</div>
+      <div class="skill-cat-name">Tools & Platforms</div>
+      <div class="skill-tags">
+        <span class="tag hi">IBM Cloud</span>
+        <span class="tag">Google Colab</span>
+        <span class="tag">Jupyter Notebook</span>
+        <span class="tag">Linux OS</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-in">
+      <div class="skill-cat-icon">∑</div>
+      <div class="skill-cat-name">Core Concepts</div>
+      <div class="skill-tags">
+        <span class="tag">DSA</span>
+        <span class="tag">Artificial Intelligence</span>
+        <span class="tag hi">Data Science</span>
+        <span class="tag">Computer Networks</span>
+        <span class="tag">System Architecture Buildup</span>
+        <span class="tag">/span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="sec-label fade-in">Work Experience</p>
+  <h2 class="sec-title fade-in">Internships</h2>
+  <div class="sec-divider fade-in"></div>
+
+  <div class="exp-list">
+    <div class="exp-card fade-in">
+      <div class="exp-card-top">
+        <div>
+          <div class="exp-role">LLM Post Training Intern</div>
+          <div class="exp-company">Ethara AI</div>
+        </div>
+        <div class="exp-date">Dec 2025 – Jan 2026</div>
+      </div>
+      <ul class="exp-points">
+        <li>Learned fundamentals of AI/ML and Large Language Models (LLMs).</li>
+        <li>Worked on data annotation, labelling, and quality improvement pipelines.</li>
+        <li>Gained hands-on experience in Reinforcement Learning from Human Feedback (RLHF).</li>
+        <li>Improved skills in prompt engineering and model evaluation methodologies.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card fade-in">
+      <div class="exp-card-top">
+        <div>
+          <div class="exp-role">Cyber Security Intern</div>
+          <div class="exp-company">CDAC Noida</div>
+        </div>
+        <div class="exp-date">Oct 2024 – Nov 2024</div>
+      </div>
+      <ul class="exp-points">
+        <li>Applied various cybersecurity tools and technologies in a professional lab environment.</li>
+        <li>Gained practical exposure to ethical hacking techniques and vulnerability assessment.</li>
+        <li>Performed threat analysis aligned with industry-standard security practices.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card fade-in">
+      <div class="exp-card-top">
+        <div>
+          <div class="exp-role">AI & Cloud Intern</div>
+          <div class="exp-company">Edunet Foundation</div>
+        </div>
+        <div class="exp-date">Jun 2024 – Jul 2024</div>
+      </div>
+      <ul class="exp-points">
+        <li>Built and deployed a functional chatbot on WhatsApp and a website using IBM Cloud.</li>
+        <li>Developed a House Price Prediction model using ML regression techniques in Python.</li>
+        <li>Gained hands-on experience with IBM Cloud services and AI model deployment pipelines.</li>
+        <li>Worked extensively with Google Colab and Jupyter Notebook.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <p class="sec-label fade-in">Credentials</p>
+  <h2 class="sec-title fade-in">Certifications</h2>
+  <div class="sec-divider fade-in"></div>
+
+  <div class="certs-grid">
+    <div class="cert-card fade-in">
+      <div class="cert-icon">INF</div>
+      <div>
+      
+        <div class="cert-name"><a href="https://drive.google.com/file/d/1Bmn1kD-nY8WRovX4sRhKowxpSXefjsVd/view" target="_blank">Cyber Security and Applied Ethical Hacking</a></div>
+        <div class="cert-issuer">Infosys</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-icon">GGL</div>
+      <div>
+        <div class="cert-name"><a href="https://drive.google.com/file/d/10xOFJKeMdmo-nxUKeAbUL7T6fKaqrJXq/view" target="_blank">Foundation of Cyber Security</a></div>
+        <div class="cert-issuer">Google</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-icon">IBM</div>
+      <div>
+        <div class="cert-name"><a href="https://drive.google.com/file/d/1Xxr6Uc3NoawzoCLlHHPieTGE-6Kjr7mN/view" target="_blank">Getting Started with Threat Intelligence and Hunting</a></div>
+        <div class="cert-issuer">IBM</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-icon">IBM</div>
+      <div>
+        <div class="cert-name"><a href="https://drive.google.com/file/d/1LcDmX3qjyBZuAMiLheIWdGw74kFDORfO/view" target="_blank">Getting Started with Enterprise-Grade AI</a></div>
+        <div class="cert-issuer">IBM</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-icon">NPT</div>
+      <div>
+        <div class="cert-name"><a href="https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs142/Course/NPTEL25CS142S105760054910598246.pdf" target="_blank">Ethical Hacking</a></div>
+        <div class="cert-issuer">NPTEL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="sec-label fade-in">Get in Touch</p>
+  <h2 class="sec-title fade-in">Let's connect</h2>
+  <div class="sec-divider fade-in"></div>
+
+  <div class="contact-grid">
+    <div>
+      <p class="fade-in" style="color:#8899b8;font-size:.92rem;line-height:1.9;max-width:40ch;">
+        I'm actively looking for internship and project opportunities in Cybersecurity and AI/ML. Whether you have a role, a collaboration, or just want to talk tech — feel free to reach out.
+      </p>
+      <div class="contact-cards">
+        <a href="/cdn-cgi/l/email-protection#e58488848b82909591848f8cd6d5d2a58288848c89cb868a88" class="contact-card fade-in">
+          <div class="cc-icon">@</div>
+          <div>
+            <div class="cc-label">Email</div>
+            <div class="cc-value">amanguptaji307@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+919630207064" class="contact-card fade-in">
+          <div class="cc-icon">☎</div>
+          <div>
+            <div class="cc-label">Phone</div>
+            <div class="cc-value">+91 96302 07064</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/aman-gupta-993025205" target="_blank" class="contact-card fade-in">
+          <div class="cc-icon">in</div>
+          <div>
+            <div class="cc-label">LinkedIn</div>
+            <div class="cc-value">linkedin.com/in/aman-gupta-993025205</div>
+          </div>
+        </a>
+        <div class="contact-card fade-in" style="cursor:default;">
+          <div class="cc-icon">📍</div>
+          <div>
+            <div class="cc-label">Location</div>
+            <div class="cc-value">Trimurti Nagar, Gwalior, M.P.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form fade-in" id="contactForm">
+      <div class="form-row">
+        <div class="fg">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="from_name" type="text" placeholder="Your name" required/>
+        </div>
+        <div class="fg">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="from_email" type="email" placeholder="your@email.com" required/>
+        </div>
+      </div>
+      <div class="fg">
+        <label for="cf-subject">Subject</label>
+        <input id="cf-subject" name="subject" type="text" placeholder="Internship opportunity / Collaboration" required/>
+      </div>
+      <div class="fg">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" placeholder="Tell me about the opportunity…" required></textarea>
+      </div>
+
+      <!-- Toast notification -->
+      <div id="cf-toast" style="display:none;padding:.85rem 1.2rem;font-size:.82rem;font-weight:600;letter-spacing:.06em;border:1px solid;"></div>
+
+      <button type="submit" id="cf-btn" class="btn btn-primary" style="align-self:flex-start;">
+        <span id="cf-btn-text">Send Message →</span>
+      </button>
+
+      <p style="font-size:.7rem;color:var(--muted);margin-top:.5rem;font-family:'Space Mono',monospace;">
+        ⚙ Powered by EmailJS · No server required
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">aman_gupta.exe</div>
+  <div class="footer-copy">© 2026 · Aman Gupta · Gwalior, India</div>
+  <div class="footer-links">
+    <a href="/cdn-cgi/l/email-protection#d4b5b9b5bab3a1a4a0b5bebde7e4e394b3b9b5bdb8fab7bbb9">Email</a>
+    <a href="https://www.linkedin.com/in/aman-gupta-993025205" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+/* ============================================================
+   EMAILJS SETUP — Fill in your 3 keys below.
+   ============================================================ */
+var EMAILJS_PUBLIC_KEY  = "YjVcvjBeAKLsJkcXH";
+var EMAILJS_SERVICE_ID  = "service_e9xm2rx";
+var EMAILJS_TEMPLATE_ID = "template_imtjdrh";
+/* ============================================================ */
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn     = document.getElementById('cf-btn');
+  const btnText = document.getElementById('cf-btn-text');
+  const toast   = document.getElementById('cf-toast');
+
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+
+  if (!name || !email || !subject || !message) {
+    showToast('Please fill in all fields.', 'warn');
+    return;
+  }
+
+  btn.disabled = true;
+  btnText.textContent = 'Sending…';
+  hideToast();
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      from_name:  name,
+      from_email: email,
+      subject:    subject,
+      message:    message,
+      to_email:   'amanguptaji307@gmail.com',
+      reply_to:   email,
+    });
+
+    showToast('Message sent! I will get back to you soon.', 'success');
+    document.getElementById('contactForm').reset();
+
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    showToast('Failed to send. Please check your EmailJS keys and try again.', 'error');
+  } finally {
+    btn.disabled = false;
+    btnText.textContent = 'Send Message →';
+  }
+});
+
+function showToast(msg, type) {
+  const t = document.getElementById('cf-toast');
+  const styles = {
+    success: { color: '#00d4aa', border: 'rgba(0,212,170,.35)', bg: 'rgba(0,212,170,.08)' },
+    error:   { color: '#ff6b6b', border: 'rgba(255,107,107,.35)', bg: 'rgba(255,107,107,.08)' },
+    warn:    { color: '#ffd166', border: 'rgba(255,209,102,.35)', bg: 'rgba(255,209,102,.08)' },
+  };
+  const s = styles[type] || styles.warn;
+  t.style.display     = 'block';
+  t.style.color       = s.color;
+  t.style.borderColor = s.border;
+  t.style.background  = s.bg;
+  t.textContent       = msg;
+}
+
+function hideToast() {
+  document.getElementById('cf-toast').style.display = 'none';
+}
+
+/* Scroll fade-in */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 90);
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
